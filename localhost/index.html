@@ -1,0 +1,32 @@
+ <?php include("includes/header.php"); ?>
+ <h2> DATA FROM TABLE "READERS"</h2>
+ <a class="a1" style="margin-left: 70%" href="createR.php">Add new reader</a>
+<table style="margin-left: 22%">
+    <tr>
+        <th>Readers ID</th>
+        <th>Full Name</th>
+        <th>Birthdate</th>
+        <th>Address</th>
+        <th>Email</th>
+    </tr>
+
+    <?php
+            $readers = mysqli_query($connect, "SELECT * FROM `readers`");
+            $readers = mysqli_fetch_all($readers);
+            foreach ($readers as $reader) {
+                ?>
+                <tr>
+                    <td><?= $reader[0] ?></td>
+                    <td><?= $reader[1] ?></td>
+                    <td><?= $reader[2] ?></td>
+                    <td><?= $reader[3] ?></td>
+                    <td><?= $reader[5] ?></td>
+                    <td><a href="updateR.php?readers_id=<?= $reader[0] ?>">Update</a></td>
+                    <td><a style="color: #29293d;" href="vendor/deleteR.php?readers_id=<?= $reader[0] ?>">Delete</a></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+    </body>
+    </html>
